@@ -1,5 +1,3 @@
-# Capstone_Modul1_JCDS2502
-
 # Hospital Patient Database System
 
 ## Overview
@@ -56,12 +54,14 @@ The **Hospital Patient Database System** is a Python-based application designed 
 Run the following command in your terminal:
 ```bash
 pip install tabulate
-How to Run
+```
+### How to Run
 Clone or download the project files.
 Run the main.py file in your Python environment:
-bash```
+```bash
 python main.py
 ```
+
 
 Patient Fields:
 Patient ID: Unique identifier for each patient.
@@ -73,12 +73,9 @@ Disease Type: Either Infectious or Non-Infectious.
 Severity: Can be Acute, Chronic, or Progressive.
 Department: Hospital department handling the patient (e.g., Cardiology, Neurology).
 Status: Patient's hospital status (Inpatient or Outpatient).
-Example Usage
-1. Main Menu
-markdown
-Always show details
+Example Usage:
 
-Copy code
+1. Main Menu
 Hospital Patient Database System
 
 1. Create patient data
@@ -89,21 +86,15 @@ Hospital Patient Database System
 6. Payment
 7. Information
 8. Exit
+
 2. Tabulated Data Output
 When viewing patient data:
 
-graphql
-Always show details
-
-Copy code
 | Patient ID | Name             | Age | Gender | Diagnosis     | Disease Type   | Severity    | Department         | Status      |
 |------------|------------------|-----|--------|---------------|----------------|-------------|--------------------|-------------|
 | 001        | Patricia Taylor  | 29  | Male   | Hypertension  | Non-Infectious | Progressive | Cardiology         | Outpatient  |
 | 002        | Mary Hernandez   | 48  | Female | Hepatitis     | Non-Infectious | Chronic     | Cardiology         | Outpatient  |
-Future Enhancements
-Add functionality for exporting data to CSV or JSON files.
-Implement authentication for secure access.
-Integrate with a database for persistent storage.
-Add data visualization for patient statistics.
+
+
 License
 This project is licensed under the MIT License.
