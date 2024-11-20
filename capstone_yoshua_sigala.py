@@ -2,22 +2,37 @@ import tabulate
 
 # Initial Database
 patients = [
-    {'Patient ID': '001', 'Name': 'Patricia Taylor', 'Age': 29, 'Gender': 'Male', 'Diagnosis': 'Hypertension', 'Disease Type': 'Non-Infectious', 'Severity': 'Progressive', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '002', 'Name': 'Mary Hernandez', 'Age': 48, 'Gender': 'Female', 'Diagnosis': 'Hepatitis', 'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '003', 'Name': 'James Anderson', 'Age': 67, 'Gender': 'Female', 'Diagnosis': "Alzheimer's", 'Disease Type': 'Non-Infectious', 'Severity': 'Progressive', 'Department': 'Oncology', 'Status': 'Inpatient'},
-    {'Patient ID': '004', 'Name': 'Linda Martinez', 'Age': 35, 'Gender': 'Male', 'Diagnosis': 'COVID-19', 'Disease Type': 'Infectious', 'Severity': 'Progressive', 'Department': 'General Medicine', 'Status': 'Inpatient'},
-    {'Patient ID': '005', 'Name': 'Linda Martinez', 'Age': 80, 'Gender': 'Female', 'Diagnosis': 'Pneumonia', 'Disease Type': 'Infectious', 'Severity': 'Chronic', 'Department': 'Pulmonology', 'Status': 'Inpatient'},
-    {'Patient ID': '006', 'Name': 'James Anderson', 'Age': 50, 'Gender': 'Female', 'Diagnosis': 'Migraine', 'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Pulmonology', 'Status': 'Inpatient'},
-    {'Patient ID': '007', 'Name': 'David Wilson', 'Age': 39, 'Gender': 'Female', 'Diagnosis': "Parkinson's", 'Disease Type': 'Infectious', 'Severity': 'Progressive', 'Department': 'Neurology', 'Status': 'Outpatient'},
-    {'Patient ID': '008', 'Name': 'Patricia Taylor', 'Age': 55, 'Gender': 'Male', 'Diagnosis': 'Cancer', 'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Oncology', 'Status': 'Inpatient'},
-    {'Patient ID': '009', 'Name': 'David Wilson', 'Age': 76, 'Gender': 'Male', 'Diagnosis': 'Heart Disease', 'Disease Type': 'Infectious', 'Severity': 'Progressive', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '010', 'Name': 'Emily Davis', 'Age': 80, 'Gender': 'Female', 'Diagnosis': "Parkinson's", 'Disease Type': 'Infectious', 'Severity': 'Progressive', 'Department': 'Neurology', 'Status': 'Outpatient'},
-    {'Patient ID': '011', 'Name': 'Chris Lee', 'Age': 70, 'Gender': 'Female', 'Diagnosis': 'Heart Disease', 'Disease Type': 'Infectious', 'Severity': 'Chronic', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '012', 'Name': 'Mary Hernandez', 'Age': 68, 'Gender': 'Female', 'Diagnosis': 'Migraine', 'Disease Type': 'Non-Infectious', 'Severity': 'Progressive', 'Department': 'General Medicine', 'Status': 'Inpatient'},
-    {'Patient ID': '013', 'Name': 'Mary Hernandez', 'Age': 69, 'Gender': 'Female', 'Diagnosis': 'Pneumonia', 'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '014', 'Name': 'Patricia Taylor', 'Age': 27, 'Gender': 'Male', 'Diagnosis': 'Heart Disease', 'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Cardiology', 'Status': 'Outpatient'},
-    {'Patient ID': '015', 'Name': 'Emily Davis', 'Age': 47, 'Gender': 'Male', 'Diagnosis': "Parkinson's", 'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Oncology', 'Status': 'Outpatient'}
+    # General Medicine
+    {'Patient ID': '001', 'Name': 'Patricia Taylor', 'Age': 34, 'Gender': 'Female', 'Diagnosis': 'Diabetes',
+     'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'General Medicine', 'Status': 'Outpatient'},
+    {'Patient ID': '002', 'Name': 'John Smith', 'Age': 50, 'Gender': 'Male', 'Diagnosis': 'Tuberculosis',
+     'Disease Type': 'Infectious', 'Severity': 'Chronic', 'Department': 'General Medicine', 'Status': 'Inpatient'},
+
+    # Cardiology
+    {'Patient ID': '003', 'Name': 'Emily Davis', 'Age': 58, 'Gender': 'Female', 'Diagnosis': 'Coronary Artery Disease',
+     'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'Cardiology', 'Status': 'Inpatient'},
+    {'Patient ID': '004', 'Name': 'Michael Johnson', 'Age': 45, 'Gender': 'Male', 'Diagnosis': 'Infective Endocarditis',
+     'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Cardiology', 'Status': 'Inpatient'},
+
+    # Pulmonology
+    {'Patient ID': '005', 'Name': 'Sophia Brown', 'Age': 65, 'Gender': 'Female', 'Diagnosis': 'Chronic Obstructive Pulmonary Disease',
+     'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'Pulmonology', 'Status': 'Outpatient'},
+    {'Patient ID': '006', 'Name': 'James Wilson', 'Age': 40, 'Gender': 'Male', 'Diagnosis': 'Pneumonia',
+     'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Pulmonology', 'Status': 'Inpatient'},
+
+    # Neurology
+    {'Patient ID': '007', 'Name': 'Linda Martinez', 'Age': 68, 'Gender': 'Female', 'Diagnosis': "Parkinson's Disease",
+     'Disease Type': 'Non-Infectious', 'Severity': 'Progressive', 'Department': 'Neurology', 'Status': 'Outpatient'},
+    {'Patient ID': '008', 'Name': 'David Anderson', 'Age': 72, 'Gender': 'Male', 'Diagnosis': 'Bacterial Meningitis',
+     'Disease Type': 'Infectious', 'Severity': 'Acute', 'Department': 'Neurology', 'Status': 'Inpatient'},
+
+    # Oncology
+    {'Patient ID': '009', 'Name': 'Jennifer Lee', 'Age': 55, 'Gender': 'Female', 'Diagnosis': 'Breast Cancer',
+     'Disease Type': 'Non-Infectious', 'Severity': 'Chronic', 'Department': 'Oncology', 'Status': 'Outpatient'},
+    {'Patient ID': '010', 'Name': 'Robert Brown', 'Age': 60, 'Gender': 'Male', 'Diagnosis': 'Hepatitis C (Liver Cancer Risk)',
+     'Disease Type': 'Infectious', 'Severity': 'Chronic', 'Department': 'Oncology', 'Status': 'Outpatient'}
 ]
+
 
 # CRUD functions
 def create_patient():
