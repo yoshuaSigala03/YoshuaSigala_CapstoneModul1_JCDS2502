@@ -64,6 +64,7 @@ python main.py
 
 
 Patient Fields:
+
 Patient ID  :  Unique identifier for each patient.
 
 Name  :  Full name of the patient.
@@ -88,7 +89,7 @@ Example Usage:
 Hospital Patient Database System
 
 1. Create patient data
-2. Read   patient data
+2. View   patient data
 3. Update patient data
 4. Delete patient data
 5. Search patient data
