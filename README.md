@@ -65,13 +65,21 @@ python main.py
 
 Patient Fields:
 Patient ID  :  Unique identifier for each patient.
+
 Name  :  Full name of the patient.
+
 Age  :  Age of the patient in years.
+
 Gender  :  Gender of the patient (Male/Female).
+
 Diagnosis  :  Medical condition or disease.
+
 Disease Type  :  Either Infectious or Non-Infectious.
+
 Severity  :  Can be Acute, Chronic, or Progressive.
+
 Department  :  Hospital department handling the patient (General Medicine, Cardiology, Pulmonology, Neurology, Oncology).
+
 Status  :  Patient's hospital status (Inpatient or Outpatient).
 
 
