@@ -1,5 +1,5 @@
 import tabulate
-# VER 2.12
+
 # Initial Database
 patients = [
     {'Patient ID': '001', 'Name': 'Patricia Taylor', 'Age': 29, 'Gender': 'Male', 'Diagnosis': 'Hypertension', 'Disease Type': 'Non-Infectious', 'Severity': 'Progressive', 'Department': 'Cardiology', 'Status': 'Outpatient'},
@@ -21,142 +21,147 @@ patients = [
 
 # CRUD functions
 def create_patient():
-    print("\n1. Create new patient data")
-    print("2. Return to home menu")
-    choice = input("Choose an option: ")
+    while True:
+        print("\n1. Create new patient data")
+        print("2. Return to home menu")
+        choice = input("Choose an option: ")
 
-    if choice == '1':
-        patient_id = input("\nEnter Patient ID: ")
-        for patient in patients:
-            if patient['Patient ID'] == patient_id:
+        if choice == '1':
+            patient_id = input("\nEnter Patient ID: ")
+            if any(patient['Patient ID'] == patient_id for patient in patients):
                 print("Data already exists")
-                return create_patient()
+                return create_patient
 
-        # Collecting patient data
-        name = input("Enter Name: ")
-        age = input("Enter Age: ")
-        gender = input("Enter Gender: ")
-        diagnosis = input("Enter Diagnosis: ")
-        disease_type = input("Enter Disease Type (Infectious/Non-Infectious): ")
-        severity = input("Enter Severity (Acute/Chronic/Progressive): ")
-        department = input("Enter Department (General Medicine, Cardiology, Pulmonology, Neurology, Oncology): ")
-        status = input("Enter Status (Inpatient/Outpatient): ")
+            # Get remaining details
+            name = input("Enter Name: ")
+            age = input("Enter Age: ")
+            gender = input("Enter Gender: ")
+            diagnosis = input("Enter Diagnosis: ")
+            disease_type = input("Enter Disease Type (Infectious/Non-Infectious): ")
+            severity = input("Enter Severity (Acute/Chronic/Progressive): ")
+            department = input("Enter Department (General Medicine, Cardiology, Pulmonology, Neurology, Oncology): ")
+            status = input("Enter Status (Inpatient/Outpatient): ")
 
-        # Confirmation to save
-        confirm = input("Save data? (yes/no): ")
-        if confirm.lower() == 'yes':
-            patients.append({
-                "Patient ID": patient_id,
-                "Name": name,
-                "Age": age,
-                "Gender": gender,
-                "Diagnosis": diagnosis,
-                "Disease Type": disease_type,
-                "Severity": severity,
-                "Department": department,
-                "Status": status
-            })
-            print("Data successfully saved")
+            # Confirmation to save
+            confirm = input("Save data? (yes/no): ")
+            if confirm.lower() == 'yes':
+                patients.append({
+                    "Patient ID": patient_id,
+                    "Name": name,
+                    "Age": age,
+                    "Gender": gender,
+                    "Diagnosis": diagnosis,
+                    "Disease Type": disease_type,
+                    "Severity": severity,
+                    "Department": department,
+                    "Status": status
+                })
+                print("Data successfully saved")
+            else:
+                print("Data not saved")
+        elif choice == '2':
+            return
         else:
-            print("Data not saved")
-
-    elif choice == '2':
-        return
-    else:
-        print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
 
 def read_patient():
-    print("\n1. View all patient data")
-    print("2. View patient by ID")
-    print("3. Return to home menu")
-    choice = input("Choose an option: ")
+    while True:
+        print("\n1. View all patient data")
+        print("2. View patient by ID")
+        print("3. Return to home menu")
+        choice = input("Choose an option: ")
 
-    if choice == '1':
-        if not patients:
-            print("No data exists")
+        if choice == '1':
+            if not patients:
+                print("No data exists")
+            else:
+                print(tabulate.tabulate(patients, headers="keys", tablefmt="github"))
+        elif choice == '2':
+            if not patients:
+                print("No data exists")
+            else:
+                patient_id = input("Enter Patient ID: ")
+                patient = next((p for p in patients if p["Patient ID"] == patient_id), None)
+                if patient:
+                    print(tabulate.tabulate([patient], headers="keys", tablefmt="github"))
+                else:
+                    print("Patient not found")
+        elif choice == '3':
+            return
         else:
-            print(tabulate.tabulate(patients, headers="keys", tablefmt="github"))
-
-    elif choice == '2':
-        patient_id = input("Enter Patient ID: ")
-        for patient in patients:
-            if patient["Patient ID"] == patient_id:
-                print(tabulate.tabulate([patient], headers="keys", tablefmt="github"))
-                return read_patient()
-        print("Patient not found")
-
-    elif choice == '3':
-        return
-    else:
-        print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
 
 def update_patient():
-    print("\n1. Update patient data")
-    print("2. Return to home menu")
-    choice = input("Choose an option: ")
+    while True:
+        print("\n1. Update patient data")
+        print("2. Return to home menu")
+        choice = input("Choose an option: ")
 
-    if choice == '1':
-        patient_id = input("\nEnter Patient ID to update: ")
+        if choice == '1':
+            patient_id = input("\nEnter Patient ID to update: ")
+            patient = next((p for p in patients if p["Patient ID"] == patient_id), None)
 
-        for patient in patients:
-            if patient["Patient ID"] == patient_id:
+            if not patient:
+                print("Data you're looking for doesn't exist")
+            else:
                 print("Current data:")
                 print(tabulate.tabulate([patient], headers="keys", tablefmt="github"))
 
-                # Update fields
-                patient["Name"] = input(f"Enter Name (leave empty to keep '{patient['Name']}'): ") or patient["Name"]
-                patient["Age"] = input(f"Enter Age (leave empty to keep '{patient['Age']}'): ") or patient["Age"]
-                patient["Gender"] = input(f"Enter Gender (leave empty to keep '{patient['Gender']}'): ") or patient["Gender"]
-                patient["Diagnosis"] = input(f"Enter Diagnosis (leave empty to keep '{patient['Diagnosis']}'): ") or patient["Diagnosis"]
-                patient["Disease Type"] = input(f"Enter Disease Type (leave empty to keep '{patient['Disease Type']}'): ") or patient["Disease Type"]
-                patient["Severity"] = input(f"Enter Severity (leave empty to keep '{patient['Severity']}'): ") or patient["Severity"]
-                patient["Department"] = input(f"Enter Department (leave empty to keep '{patient['Department']}'): ") or patient["Department"]
-                patient["Status"] = input(f"Enter Status (leave empty to keep '{patient['Status']}'): ") or patient["Status"]
+                # Update fields - if input is empty, keep previous data
+                name = input(f"\nEnter Name (leave empty to keep '{patient['Name']}'): ") or patient["Name"]
+                age = input(f"Enter Age (leave empty to keep '{patient['Age']}'): ") or patient["Age"]
+                gender = input(f"Enter Gender (leave empty to keep '{patient['Gender']}'): ") or patient["Gender"]
+                diagnosis = input(f"Enter Diagnosis (leave empty to keep '{patient['Diagnosis']}'): ") or patient["Diagnosis"]
+                disease_type = input(f"Enter Disease Type (leave empty to keep '{patient['Disease Type']}'): ") or patient["Disease Type"]
+                severity = input(f"Enter Severity (leave empty to keep '{patient['Severity']}'): ") or patient["Severity"]
+                department = input(f"Enter Department (leave empty to keep '{patient['Department']}'): ") or patient["Department"]
+                status = input(f"Enter Status (leave empty to keep '{patient['Status']}'): ") or patient["Status"]
+
+                # Update patient data
+                patient.update({
+                    "Name": name,
+                    "Age": age,
+                    "Gender": gender,
+                    "Diagnosis": diagnosis,
+                    "Disease Type": disease_type,
+                    "Severity": severity,
+                    "Department": department,
+                    "Status": status
+                })
 
                 print("Data successfully updated")
-                return update_patient()
-
-            else:
-                print("Data you're looking for doesn't exist")
-                return update_patient()
-
-    elif choice == '2':
-        return
-    else:
-        print("Invalid choice. Please try again.")
-        return update_patient()
+        elif choice == '2':
+            return
+        else:
+            print("Invalid choice. Please try again.")
 
 def delete_patient():
-    print("\n1. Delete patient data")
-    print("2. Return to home menu")
-    choice = input("Choose an option: ")
+    while True:
+        print("\n1. Delete patient data")
+        print("2. Return to home menu")
+        choice = input("Choose an option: ")
 
-    if choice == '1':
-        patient_id = input("Enter Patient ID to delete: ")
-        for patient in patients:
-            if patient["Patient ID"] == patient_id:
+        if choice == '1':
+            patient_id = input("Enter Patient ID to delete: ")
+            patient = next((p for p in patients if p["Patient ID"] == patient_id), None)
+            if not patient:
+                print("Data you're looking for doesn't exist")
+            else:
                 print("Data to delete:")
                 print(tabulate.tabulate([patient], headers="keys", tablefmt="github"))
-
                 confirm = input("Confirm delete? (yes/no): ")
                 if confirm.lower() == 'yes':
                     patients.remove(patient)
                     print("Data successfully deleted")
                 else:
                     print("Data not deleted")
-                return
-
-            else:
-                print("Data you're looking for doesn't exist")
-                return delete_patient()
-    elif choice == '2':
-        return
-    else:
-        print("Invalid choice. Please try again.")
-        return delete_patient()
+        elif choice == '2':
+            return
+        else:
+            print("Invalid choice. Please try again.")
 
 def search_patient():
-    fields = {
+    field_map = {
         "1": "Patient ID",
         "2": "Name",
         "3": "Age",
@@ -168,32 +173,20 @@ def search_patient():
         "9": "Status"
     }
     print("\nSearch by fields:")
-    for key, field in fields.items():
-        print(f"{key}. {field}")
-    print("0. Return to Home")  # Add option 0 for returning to the main menu
-    field_choice = input("Choose an option: ")
-
-    # Check if the user wants to return to the main menu
-    if field_choice == "0":
-        return  # Exit the function to return to the main menu
-
-    field = fields.get(field_choice)
+    for key, value in field_map.items():
+        print(f"{key}. {value}")
+    field_choice = input("Choose a field to search: ")
+    field = field_map.get(field_choice)
 
     if field:
         term = input(f"Enter {field} to search for: ")
-        results = []
-        for patient in patients:
-            if patient.get(field) == term:
-                results.append(patient)
+        results = [p for p in patients if p.get(field) == term]
         if results:
             print(tabulate.tabulate(results, headers="keys", tablefmt="github"))
         else:
             print("No matching records found")
     else:
-        print("Invalid field choice. Please try again.")
-
-    # Recursively prompt for another search if needed
-    return search_patient()
+        print("Invalid field choice")
 
 
 def calculate_payment():
@@ -216,24 +209,29 @@ def calculate_payment():
 
             total_cost = base_cost + severity_cost + department_cost + status_cost
 
-            # Display bill breakdown
+            # Prepare tabulate data
+            bill_details = [
+                ["Disease Type", patient["Disease Type"], f"Rp.{base_cost:,}"],
+                ["Severity", patient["Severity"], f"Rp.{severity_cost:,}"],
+                ["Department", patient["Department"], f"Rp.{department_cost:,}"],
+                ["Status", patient["Status"], f"Rp.{status_cost:,}"],
+                ["Total Amount Due", "", f"Rp.{total_cost:,}"]
+            ]
+
+            # Display bill breakdown using tabulate
             print("\nBill Breakdown:")
-            print(f"Disease Type ({patient['Disease Type']}): Rp.{base_cost}")
-            print(f"Severity ({patient['Severity']}): Rp.{severity_cost}")
-            print(f"Department ({patient['Department']}): Rp.{department_cost}")
-            print(f"Status ({patient['Status']}): Rp.{status_cost}")
-            print(f"Total Amount Due: Rp.{total_cost}")
+            print(tabulate.tabulate(bill_details, headers=["Description", "Detail", "Cost"], tablefmt="grid"))
 
             # Payment process
             while True:
                 try:
                     amount_paid = int(input("\nEnter payment amount: Rp."))
                     if amount_paid < total_cost:
-                        print(f"Amount is not enough. You still owe: Rp.{total_cost - amount_paid}")
+                        print(f"Amount is not enough. You still owe: Rp.{total_cost - amount_paid:,}")
                     else:
                         change = amount_paid - total_cost
                         if change > 0:
-                            print(f"Payment successful. Change returned: Rp.{change}")
+                            print(f"Payment successful. Change returned: Rp.{change:,}")
                         else:
                             print("Payment successful.")
                         patients.remove(patient)
@@ -243,59 +241,36 @@ def calculate_payment():
             return
     print("Patient not found")
 
-
 def display_info():
     info_text = """
     Hospital Patient Database Information:
+
     Fields:
-    - Patient ID: Unique identifier for each patient.
+    - Patient ID: A unique identifier assigned to each patient for easy tracking and management.
     - Name      : Full name of the patient.
-    - Age       : Age in years.
-    - Gender    : Gender (Male/Female).
-    - Diagnosis : Diagnosed condition.
+    - Age       : Age of the patient in years.
+    - Gender    : Gender of the patient (Male/Female).
+    - Diagnosis : The diagnosed condition or disease as described by medical staff.
 
     Disease Type:
-    - Infectious    :
-      Diseases caused by pathogenic microorganisms, such as bacteria,
-      viruses, parasites, or fungi. These can spread directly or indirectly.
-
-    - Non-Infectious:
-      Diseases not caused by infectious agents. These include chronic
-      conditions like diabetes, heart disease, and cancer.
+    - Infectious    : Diseases caused by pathogenic microorganisms, such as bacteria, viruses, parasites, or fungi. These can spread directly or indirectly.
+    - Non-Infectious: Diseases not caused by infectious agents. These include chronic conditions like diabetes, heart disease, and cancer.
 
     Severity:
-    - Acute         : Short-term but severe.
-    - Chronic       : Long-term, persistent.
-    - Progressive   : Worsens over time.
+    - Acute         : Sudden onset of severe symptoms that require immediate attention but are usually of short duration.
+    - Chronic       : Long-term conditions that may not be severe initially but persist over a longer period and require ongoing management.
+    - Progressive   : Conditions that gradually worsen over time, often requiring more intensive treatment as the disease advances.
 
     Department:
-    - General Medicine :
-      Provides primary healthcare and general medical services, covering a wide range of
-      medical issues.
-
-    - Cardiology :
-      Specialized department focusing on heart-related conditions and treatments.
-
-    - Pulmonology :
-      Deals with respiratory system-related diseases such as asthma, COPD, and
-      lung infections.
-
-    - Neurology :
-      Specializes in disorders of the nervous system, including the brain, spinal cord,
-      and peripheral nerves.
-
-    - Oncology :
-      Dedicated to the diagnosis, treatment, and management of cancer.
+    - General Medicine  : Provides primary healthcare and general medical services, covering a wide range of medical issues.
+    - Cardiology        : Specialized department focusing on heart-related conditions and treatments.
+    - Pulmonology       : Deals with respiratory system-related diseases such as asthma, COPD, and lung infections.
+    - Neurology         : Specializes in disorders of the nervous system, including the brain, spinal cord, and peripheral nerves.
+    - Oncology          : Dedicated to the diagnosis, treatment, and management of cancer.
 
     Status:
-    - Inpatient :
-      Requires overnight stay. Patients admitted to the hospital for at least one night,
-      often for intensive care or surgical procedures.
-
-    - Outpatient:
-      Patients who receive medical treatment without being admitted to the hospital;
-      they come for consultations, check-ups, or minor procedures.
-
+    - Inpatient : Patients admitted to the hospital for at least one night, often for intensive care or surgical procedures.
+    - Outpatient: Patients who receive medical treatment without being admitted to the hospital; they come for consultations, check-ups, or minor procedures.
     """
     print(info_text)
 
@@ -303,7 +278,7 @@ def display_info():
 def main_menu():
     while True:
         print("\nHospital Patient Database System")
-        print("1. Create patient data")
+        print("\n1. Create patient data")
         print("2. Read   patient data")
         print("3. Update patient data")
         print("4. Delete patient data")
