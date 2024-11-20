@@ -102,8 +102,8 @@ When viewing patient data:
 
 | Patient ID | Name             | Age | Gender | Diagnosis     | Disease Type   | Severity    | Department         | Status      |
 |------------|------------------|-----|--------|---------------|----------------|-------------|--------------------|-------------|
-| 001        | Patricia Taylor  | 29  | Male   | Hypertension  | Non-Infectious | Progressive | Cardiology         | Outpatient  |
-| 002        | Mary Hernandez   | 48  | Female | Hepatitis     | Non-Infectious | Chronic     | Cardiology         | Outpatient  |
+| 001        | Patricia Taylor  | 34  | Female   | Diabetes  | Non-Infectious | Chronic | General Medicine         | Outpatient  |
+| 002        | John Smith   | 50  | Male | Tuberculosis     | Infectious | Chronic     | General Medicine         | Inpatient  |
 
 ---
 
