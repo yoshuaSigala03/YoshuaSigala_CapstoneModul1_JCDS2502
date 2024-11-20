@@ -78,14 +78,14 @@ Example Usage:
 1. Main Menu
 Hospital Patient Database System
 
-1. Create patient data
-2. Read   patient data
-3. Update patient data
-4. Delete patient data
-5. Search patient data
-6. Payment
-7. Information
-8. Exit
+  1. Create patient data
+  2. Read   patient data
+  3. Update patient data
+  4. Delete patient data
+  5. Search patient data
+  6. Payment
+  7. Information
+  8. Exit
 
 2. Tabulated Data Output
 When viewing patient data:
