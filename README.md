@@ -32,7 +32,7 @@ The **Hospital Patient Database System** is a Python-based application designed 
 - Automatically calculates the total payment due for a patient based on:
   - Disease type (`Infectious` or `Non-Infectious`).
   - Disease severity (`Acute`, `Chronic`, or `Progressive`).
-  - Hospital department.
+  - Hospital department (`General Medicine`, `Cardiology`, `Pulmonology`, `Neurology`, `Oncology`).
   - Patient status (`Inpatient` or `Outpatient`).
 - Displays a detailed breakdown of the costs.
 - Supports payment processing and returns change if applicable.
@@ -106,5 +106,5 @@ When viewing patient data:
 | 002        | Mary Hernandez   | 48  | Female | Hepatitis     | Non-Infectious | Chronic     | Cardiology         | Outpatient  |
 
 
-License
+### License
 This project is licensed under the MIT License.
