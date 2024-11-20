@@ -1,7 +1,5 @@
 # Capstone_Modul1_JCDS2502
 
-# Writing the README content to a file
-readme_content = """
 # Hospital Patient Database System
 
 ## Overview
@@ -61,13 +59,10 @@ pip install tabulate
 How to Run
 Clone or download the project files.
 Run the main.py file in your Python environment:
-bash
-Always show details
-
-Copy code
+bash```
 python main.py
-Follow the on-screen instructions to navigate through the menu.
-Database Structure
+
+
 Patient Fields:
 Patient ID: Unique identifier for each patient.
 Name: Full name of the patient.
