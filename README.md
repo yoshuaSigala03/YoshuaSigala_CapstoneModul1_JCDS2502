@@ -61,7 +61,7 @@ Clone or download the project files.
 Run the main.py file in your Python environment:
 bash```
 python main.py
-
+```
 
 Patient Fields:
 Patient ID: Unique identifier for each patient.
