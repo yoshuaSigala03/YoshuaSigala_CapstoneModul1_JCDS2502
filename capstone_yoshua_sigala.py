@@ -161,35 +161,55 @@ def delete_patient():
             print("Invalid choice. Please try again.")
 
 def search_patient():
-    field_map = {
-        "1": "Patient ID",
-        "2": "Name",
-        "3": "Age",
-        "4": "Gender",
-        "5": "Diagnosis",
-        "6": "Disease Type",
-        "7": "Severity",
-        "8": "Department",
-        "9": "Status"
-    }
-    print("\nSearch by fields:")
-    for key, value in field_map.items():
-        print(f"{key}. {value}")
-    field_choice = input("Choose a field to search: ")
-    field = field_map.get(field_choice)
+    while True:
+        field_map = {
+            "1": "Patient ID",
+            "2": "Name",
+            "3": "Age",
+            "4": "Gender",
+            "5": "Diagnosis",
+            "6": "Disease Type",
+            "7": "Severity",
+            "8": "Department",
+            "9": "Status",
+            "0": "Return to main menu"
+        }
+        print("\nSearch by fields:")
+        for key, value in field_map.items():
+            print(f"{key}. {value}")
+        
+        field_choice = input("Choose a field to search: ")
 
-    if field:
-        term = input(f"Enter {field} to search for: ")
-        results = [p for p in patients if p.get(field) == term]
-        if results:
-            print(tabulate.tabulate(results, headers="keys", tablefmt="github"))
+        if field_choice == "0":
+            return
+        
+        field = field_map.get(field_choice)
+        if field:
+            term = input(f"Enter {field} to search for: ")
+            results = [p for p in patients if p.get(field) == term]
+            if results:
+                print(tabulate.tabulate(results, headers="keys", tablefmt="github"))
+            else:
+                print("No matching records found")
         else:
-            print("No matching records found")
-    else:
-        print("Invalid field choice")
+            print("Invalid choice. Please try again.")
 
 
 def calculate_payment():
+    while True:
+        print("\nCalculate Payment Menu:")
+        print("1. Continue to payment")
+        print("0. Return to home menu")
+        choice = input("Choose an option: ")
+        
+        if choice == "0":
+            print("Returning to home menu...")
+            return
+        elif choice == "1":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
     patient_id = input("Enter Patient ID: ")  # Keep patient_id as a string
     for patient in patients:
         if patient["Patient ID"] == patient_id:
@@ -240,6 +260,7 @@ def calculate_payment():
                     print("Invalid input. Please enter a numeric value.")
             return
     print("Patient not found")
+
 
 def display_info():
     info_text = """
