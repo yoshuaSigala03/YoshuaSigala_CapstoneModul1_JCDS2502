@@ -105,6 +105,7 @@ When viewing patient data:
 | 001        | Patricia Taylor  | 29  | Male   | Hypertension  | Non-Infectious | Progressive | Cardiology         | Outpatient  |
 | 002        | Mary Hernandez   | 48  | Female | Hepatitis     | Non-Infectious | Chronic     | Cardiology         | Outpatient  |
 
+---
 
 ### License
 This project is licensed under the MIT License.
