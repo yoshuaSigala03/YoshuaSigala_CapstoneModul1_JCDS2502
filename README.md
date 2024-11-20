@@ -84,7 +84,7 @@ Department  :  Hospital department handling the patient (General Medicine, Cardi
 Status  :  Patient's hospital status (Inpatient or Outpatient).
 
 
-Example Usage:
+### Example Usage:
 - Main Menu
 Hospital Patient Database System
 
