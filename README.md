@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **HHospital Patient CRUD App** is a Python-based application designed to manage patient data efficiently. This system supports CRUD (Create, Read, Update, Delete) operations, patient searches, payment calculations, and provides essential information about hospital departments, diseases, and patient statuses. The application uses the `tabulate` library to present data in a readable tabular format.
+The **Hospital Patient CRUD App** is a Python-based application designed to manage patient data efficiently. This system supports CRUD (Create, Read, Update, Delete) operations, patient searches, payment calculations, and provides essential information about hospital departments, diseases, and patient statuses. The application uses the `tabulate` library to present data in a readable tabular format.
 
 ---
 
